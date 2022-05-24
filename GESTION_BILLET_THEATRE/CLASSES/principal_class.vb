@@ -153,17 +153,17 @@ Public Class principal_class
         End Try
     End Sub
 
-    Public Sub operation_programme(progr As programme_class)
+    Public Sub operation_programme(prog As programme_classe)
         Try
             innitialise_connexion()
             con.Open()
-            cmd = New SqlCommand("execute pro_programme @code,@date_ceremony,@heure_debut,@heure_fin,@ref_salle,@ref_theatre", con)
-            cmd.Parameters.AddWithValue("@code", progr.Id1)
-            cmd.Parameters.AddWithValue("@date_ceremony", progr.Date_ceremony1)
-            cmd.Parameters.AddWithValue("@heure_debut", progr.Heure_debut1)
-            cmd.Parameters.AddWithValue("@heure_fin", progr.Heure_fin1)
-            cmd.Parameters.AddWithValue("@ref_salle", progr.Ref_salle1)
-            cmd.Parameters.AddWithValue("@ref_theatre", progr.Ref_theatre1)
+            cmd = New SqlCommand("execute pro_programme @code,@date_cere,@ref_sall,@ref_theatr,@heure_begin,@heure_end", con)
+            cmd.Parameters.AddWithValue("@code", prog.Id_programme1)
+            cmd.Parameters.AddWithValue("@date_cere", prog.Date_cer1)
+            cmd.Parameters.AddWithValue("@ref_sall", prog.Ref_sall1)
+            cmd.Parameters.AddWithValue("@ref_theatr", prog.Ref_theat1)
+            cmd.Parameters.AddWithValue("@heure_begin", prog.Heure_begin1)
+            cmd.Parameters.AddWithValue("@heure_end", prog.Heure_end1)
             cmd.ExecuteNonQuery()
             MessageBox.Show("operation reussi avec succes")
 
@@ -263,6 +263,8 @@ Public Class principal_class
 
     End Sub
 
+
+
     Public Sub afficherprixApayerBillet(cmb As System.Windows.Forms.ComboBox, prix As Label, reference As Integer)
         Try
             innitialise_connexion()
@@ -273,7 +275,7 @@ Public Class principal_class
                 con.Open()
                 cmd = con.CreateCommand()
 
-                cmd.CommandText = "select DIFFERENCE(prix_a_payer,reduction) as total_apres_red from billet where id_billet =@id_billet"
+                cmd.CommandText = "select (prix_a_payer-reduction) as total_apres_red from billet where id_billet =@id_billet"
                 cmd.Parameters.AddWithValue("@id_billet", reference)
 
                 Dim rdd As IDataReader
@@ -626,6 +628,7 @@ Public Class principal_class
 
         Return dst
     End Function
+
     Public Function get_Report_XXX(nomTable As String, nomchamp As String, valchamp As String) As DataSet
         Dim dst As DataSet
         Try
@@ -637,6 +640,33 @@ Public Class principal_class
 
                 cmd = New SqlCommand("SELECT * FROM " + nomTable + " WHERE " + nomchamp + "=@valchamp", con)
                 cmd.Parameters.AddWithValue("@valchamp", valchamp)
+                dt = New SqlDataAdapter(cmd)
+                dst = New DataSet()
+                dt.Fill(dst, nomTable)
+            End If
+
+        Catch ex As Exception
+            Throw New Exception(ex.Message)
+        Finally
+            dt.Dispose()
+            con.Close()
+        End Try
+
+        Return dst
+    End Function
+
+    Public Function get_Report_X_with_date(nomTable As String, nomchamp As String, valchamp As DateTime) As DataSet
+        Dim dst As DataSet
+        Try
+            innitialise_connexion()
+            If (con.State.ToString().ToLower().Equals("open")) Then
+                con.Close()
+            Else
+                con.Open()
+
+                cmd = New SqlCommand("SELECT * FROM " + nomTable + " WHERE " + nomchamp + "=@valchamp", con)
+                'cmd.Parameters.AddWithValue("@valchamp", valchamp)
+                cmd.Parameters.Add(New SqlParameter("@valchamp", SqlDbType.DateTime)).Value = valchamp
                 dt = New SqlDataAdapter(cmd)
                 dst = New DataSet()
                 dt.Fill(dst, nomTable)

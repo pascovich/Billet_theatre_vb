@@ -87,7 +87,6 @@
         Me.Label14 = New System.Windows.Forms.Label()
         Me.NavigationPage4 = New DevExpress.XtraBars.Navigation.NavigationPage()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
-        Me.SimpleButton17 = New DevExpress.XtraEditors.SimpleButton()
         Me.txt_id_programme = New System.Windows.Forms.TextBox()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
@@ -112,6 +111,9 @@
         Me.GroupBox12 = New System.Windows.Forms.GroupBox()
         Me.GroupBox27 = New System.Windows.Forms.GroupBox()
         Me.GroupBox28 = New System.Windows.Forms.GroupBox()
+        Me.BunifuSeparator7 = New Bunifu.Framework.UI.BunifuSeparator()
+        Me.BunifuCustomLabel5 = New Bunifu.Framework.UI.BunifuCustomLabel()
+        Me.date_affiche = New System.Windows.Forms.DateTimePicker()
         Me.SimpleButton18 = New DevExpress.XtraEditors.SimpleButton()
         Me.BunifuSeparator6 = New Bunifu.Framework.UI.BunifuSeparator()
         Me.BunifuCustomLabel4 = New Bunifu.Framework.UI.BunifuCustomLabel()
@@ -327,7 +329,7 @@
         Me.NavigationPane1.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.NavigationPage1, Me.NavigationPage2, Me.NavigationPage3, Me.NavigationPage4, Me.NavigationPage5, Me.NavigationPage6, Me.NavigationPage7})
         Me.NavigationPane1.RegularSize = New System.Drawing.Size(1256, 587)
         Me.NavigationPane1.SelectedPage = Me.NavigationPage2
-        Me.NavigationPane1.SelectedPageIndex = 4
+        Me.NavigationPane1.SelectedPageIndex = 5
         Me.NavigationPane1.Size = New System.Drawing.Size(1256, 587)
         Me.NavigationPane1.TabIndex = 1
         Me.NavigationPane1.Text = "NNN"
@@ -951,7 +953,6 @@
         '
         'GroupBox7
         '
-        Me.GroupBox7.Controls.Add(Me.SimpleButton17)
         Me.GroupBox7.Controls.Add(Me.txt_id_programme)
         Me.GroupBox7.Controls.Add(Me.GroupBox9)
         Me.GroupBox7.Controls.Add(Me.GridControl3)
@@ -962,16 +963,6 @@
         Me.GroupBox7.TabIndex = 0
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "FAITES VOS PROGRAMMES"
-        '
-        'SimpleButton17
-        '
-        Me.SimpleButton17.Image = CType(resources.GetObject("SimpleButton17.Image"), System.Drawing.Image)
-        Me.SimpleButton17.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
-        Me.SimpleButton17.Location = New System.Drawing.Point(40, 286)
-        Me.SimpleButton17.Name = "SimpleButton17"
-        Me.SimpleButton17.Size = New System.Drawing.Size(88, 45)
-        Me.SimpleButton17.TabIndex = 21
-        Me.SimpleButton17.Text = "EG"
         '
         'txt_id_programme
         '
@@ -1079,20 +1070,22 @@
         'txt_heure_fin
         '
         Me.txt_heure_fin.Location = New System.Drawing.Point(161, 163)
+        Me.txt_heure_fin.MenuManager = Me.ribbonControl1
         Me.txt_heure_fin.Name = "txt_heure_fin"
-        Me.txt_heure_fin.Properties.Mask.EditMask = "d"
+        Me.txt_heure_fin.Properties.Mask.EditMask = "n2"
         Me.txt_heure_fin.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txt_heure_fin.Size = New System.Drawing.Size(298, 20)
-        Me.txt_heure_fin.TabIndex = 28
+        Me.txt_heure_fin.TabIndex = 33
         '
         'txt_heure_debut
         '
-        Me.txt_heure_debut.Location = New System.Drawing.Point(161, 129)
+        Me.txt_heure_debut.Location = New System.Drawing.Point(161, 133)
+        Me.txt_heure_debut.MenuManager = Me.ribbonControl1
         Me.txt_heure_debut.Name = "txt_heure_debut"
-        Me.txt_heure_debut.Properties.Mask.EditMask = "d"
+        Me.txt_heure_debut.Properties.Mask.EditMask = "n2"
         Me.txt_heure_debut.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txt_heure_debut.Size = New System.Drawing.Size(298, 20)
-        Me.txt_heure_debut.TabIndex = 22
+        Me.txt_heure_debut.TabIndex = 32
         '
         'cb_salle
         '
@@ -1100,22 +1093,22 @@
         Me.cb_salle.Location = New System.Drawing.Point(161, 96)
         Me.cb_salle.Name = "cb_salle"
         Me.cb_salle.Size = New System.Drawing.Size(298, 21)
-        Me.cb_salle.TabIndex = 27
+        Me.cb_salle.TabIndex = 31
         '
         'cb_theatre
         '
         Me.cb_theatre.FormattingEnabled = True
-        Me.cb_theatre.Location = New System.Drawing.Point(161, 67)
+        Me.cb_theatre.Location = New System.Drawing.Point(161, 64)
         Me.cb_theatre.Name = "cb_theatre"
         Me.cb_theatre.Size = New System.Drawing.Size(298, 21)
-        Me.cb_theatre.TabIndex = 21
+        Me.cb_theatre.TabIndex = 30
         '
         'date_ceremony
         '
-        Me.date_ceremony.Location = New System.Drawing.Point(161, 31)
+        Me.date_ceremony.Location = New System.Drawing.Point(161, 25)
         Me.date_ceremony.Name = "date_ceremony"
         Me.date_ceremony.Size = New System.Drawing.Size(298, 21)
-        Me.date_ceremony.TabIndex = 26
+        Me.date_ceremony.TabIndex = 29
         '
         'Label16
         '
@@ -1190,26 +1183,58 @@
         Me.GroupBox27.Controls.Add(Me.GroupBox28)
         Me.GroupBox27.Controls.Add(Me.BunifuSeparator6)
         Me.GroupBox27.Controls.Add(Me.BunifuCustomLabel4)
-        Me.GroupBox27.Location = New System.Drawing.Point(837, 255)
+        Me.GroupBox27.Location = New System.Drawing.Point(570, 255)
         Me.GroupBox27.Name = "GroupBox27"
-        Me.GroupBox27.Size = New System.Drawing.Size(200, 200)
+        Me.GroupBox27.Size = New System.Drawing.Size(467, 200)
         Me.GroupBox27.TabIndex = 22
         Me.GroupBox27.TabStop = False
         '
         'GroupBox28
         '
+        Me.GroupBox28.Controls.Add(Me.BunifuSeparator7)
+        Me.GroupBox28.Controls.Add(Me.BunifuCustomLabel5)
+        Me.GroupBox28.Controls.Add(Me.date_affiche)
         Me.GroupBox28.Controls.Add(Me.SimpleButton18)
-        Me.GroupBox28.Location = New System.Drawing.Point(30, 64)
+        Me.GroupBox28.Location = New System.Drawing.Point(49, 64)
         Me.GroupBox28.Name = "GroupBox28"
-        Me.GroupBox28.Size = New System.Drawing.Size(148, 125)
+        Me.GroupBox28.Size = New System.Drawing.Size(402, 125)
         Me.GroupBox28.TabIndex = 7
         Me.GroupBox28.TabStop = False
+        '
+        'BunifuSeparator7
+        '
+        Me.BunifuSeparator7.BackColor = System.Drawing.Color.Transparent
+        Me.BunifuSeparator7.LineColor = System.Drawing.Color.FromArgb(CType(CType(105, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(105, Byte), Integer))
+        Me.BunifuSeparator7.LineThickness = 1
+        Me.BunifuSeparator7.Location = New System.Drawing.Point(78, 50)
+        Me.BunifuSeparator7.Name = "BunifuSeparator7"
+        Me.BunifuSeparator7.Size = New System.Drawing.Size(90, 14)
+        Me.BunifuSeparator7.TabIndex = 10
+        Me.BunifuSeparator7.Transparency = 255
+        Me.BunifuSeparator7.Vertical = False
+        '
+        'BunifuCustomLabel5
+        '
+        Me.BunifuCustomLabel5.AutoSize = True
+        Me.BunifuCustomLabel5.Font = New System.Drawing.Font("Lucida Fax", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BunifuCustomLabel5.Location = New System.Drawing.Point(98, 29)
+        Me.BunifuCustomLabel5.Name = "BunifuCustomLabel5"
+        Me.BunifuCustomLabel5.Size = New System.Drawing.Size(55, 18)
+        Me.BunifuCustomLabel5.TabIndex = 9
+        Me.BunifuCustomLabel5.Text = "DATE"
+        '
+        'date_affiche
+        '
+        Me.date_affiche.Location = New System.Drawing.Point(25, 66)
+        Me.date_affiche.Name = "date_affiche"
+        Me.date_affiche.Size = New System.Drawing.Size(200, 21)
+        Me.date_affiche.TabIndex = 8
         '
         'SimpleButton18
         '
         Me.SimpleButton18.Image = CType(resources.GetObject("SimpleButton18.Image"), System.Drawing.Image)
         Me.SimpleButton18.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleLeft
-        Me.SimpleButton18.Location = New System.Drawing.Point(23, 40)
+        Me.SimpleButton18.Location = New System.Drawing.Point(278, 56)
         Me.SimpleButton18.Name = "SimpleButton18"
         Me.SimpleButton18.Size = New System.Drawing.Size(107, 45)
         Me.SimpleButton18.TabIndex = 7
@@ -1220,7 +1245,7 @@
         Me.BunifuSeparator6.BackColor = System.Drawing.Color.Transparent
         Me.BunifuSeparator6.LineColor = System.Drawing.Color.FromArgb(CType(CType(105, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(105, Byte), Integer))
         Me.BunifuSeparator6.LineThickness = 1
-        Me.BunifuSeparator6.Location = New System.Drawing.Point(19, 43)
+        Me.BunifuSeparator6.Location = New System.Drawing.Point(167, 41)
         Me.BunifuSeparator6.Name = "BunifuSeparator6"
         Me.BunifuSeparator6.Size = New System.Drawing.Size(167, 23)
         Me.BunifuSeparator6.TabIndex = 6
@@ -1231,7 +1256,7 @@
         '
         Me.BunifuCustomLabel4.AutoSize = True
         Me.BunifuCustomLabel4.Font = New System.Drawing.Font("Lucida Fax", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BunifuCustomLabel4.Location = New System.Drawing.Point(49, 19)
+        Me.BunifuCustomLabel4.Location = New System.Drawing.Point(197, 17)
         Me.BunifuCustomLabel4.Name = "BunifuCustomLabel4"
         Me.BunifuCustomLabel4.Size = New System.Drawing.Size(105, 24)
         Me.BunifuCustomLabel4.TabIndex = 5
@@ -1312,7 +1337,7 @@
         Me.GridControl4.MainView = Me.GridView4
         Me.GridControl4.MenuManager = Me.ribbonControl1
         Me.GridControl4.Name = "GridControl4"
-        Me.GridControl4.Size = New System.Drawing.Size(798, 200)
+        Me.GridControl4.Size = New System.Drawing.Size(514, 200)
         Me.GridControl4.TabIndex = 2
         Me.GridControl4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
         '
@@ -2026,6 +2051,7 @@
         Me.GroupBox27.ResumeLayout(False)
         Me.GroupBox27.PerformLayout()
         Me.GroupBox28.ResumeLayout(False)
+        Me.GroupBox28.PerformLayout()
         Me.GroupBox13.ResumeLayout(False)
         Me.GroupBox14.ResumeLayout(False)
         Me.GroupBox15.ResumeLayout(False)
@@ -2207,12 +2233,6 @@
     Friend WithEvents txt_id_theatre As TextBox
     Friend WithEvents txt_id_salle As TextBox
     Friend WithEvents txt_id_programme As TextBox
-    Friend WithEvents date_ceremony As DateTimePicker
-    Friend WithEvents cb_salle As ComboBox
-    Friend WithEvents cb_theatre As ComboBox
-    Friend WithEvents SimpleButton17 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents txt_heure_fin As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txt_heure_debut As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txt_prix_programmation As DevExpress.XtraEditors.TextEdit
     Friend WithEvents cb_type_billet As ComboBox
     Friend WithEvents cb_programme As ComboBox
@@ -2232,4 +2252,12 @@
     Friend WithEvents BunifuCustomLabel4 As Bunifu.Framework.UI.BunifuCustomLabel
     Friend WithEvents SimpleButton19 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton20 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents txt_heure_fin As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txt_heure_debut As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents cb_salle As ComboBox
+    Friend WithEvents cb_theatre As ComboBox
+    Friend WithEvents date_ceremony As DateTimePicker
+    Friend WithEvents BunifuSeparator7 As Bunifu.Framework.UI.BunifuSeparator
+    Friend WithEvents BunifuCustomLabel5 As Bunifu.Framework.UI.BunifuCustomLabel
+    Friend WithEvents date_affiche As DateTimePicker
 End Class

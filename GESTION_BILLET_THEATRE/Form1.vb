@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Data.SqlClient
 Imports System.Text
-
+Imports DevExpress.XtraReports.UI
 
 Partial Public Class Form1
 
@@ -32,9 +32,9 @@ Partial Public Class Form1
             prins_object.GetTable("client", DataGridView1)
             prins_object.GetTablegrid("theatre", GridControl1)
             prins_object.GetTablegrid("salle", GridControl2)
-            prins_object.GetTablegrid("programme", GridControl3)
-            prins_object.GetTablegrid("programmation", GridControl4)
-            prins_object.GetTablegrid("billet", GridControl5)
+            prins_object.GetTablegrid("programme_table_view", GridControl3)
+            prins_object.GetTablegrid("programmation_table_view", GridControl4)
+            prins_object.GetTablegrid("billet_table_view", GridControl5)
             prins_object.GetTablegrid("paiement", GridControl6)
 
 
@@ -46,8 +46,10 @@ Partial Public Class Form1
             prins_object.chargementComboBox(cb_type_billet, "designation", "type_billet")
             prins_object.chargementComboBox(cb_client, "nom", "client")
             prins_object.chargementComboBox(cb_programmation, "id_programmation", "programmation")
+            'prins_object.chargementComboBox(cb_programmation, "id_programmation", "programmation")
 
             prins_object.chargementComboBoxTestExist(cb_billet, "id_billet", "select distinct id_billet from billet where check_paie=0")
+            'prins_object.chargementComboBoxTestExist(cb_billet, "id_programme", "select id_programme from programme")
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -325,6 +327,13 @@ MessageBoxIcon.Question)
             init_billet()
             init_paiement()
 
+            cb_salle.Items.Clear()
+            cb_theatre.Items.Clear()
+            cb_programme.Items.Clear()
+            cb_type_billet.Items.Clear()
+            cb_client.Items.Clear()
+            cb_programmation.Items.Clear()
+            cb_billet.Items.Clear()
 
             prins_object.chargementComboBox(cb_salle, "nom_salle", "salle")
             prins_object.chargementComboBox(cb_theatre, "nom_theatre", "theatre")
@@ -332,14 +341,15 @@ MessageBoxIcon.Question)
             prins_object.chargementComboBox(cb_type_billet, "designation", "type_billet")
             prins_object.chargementComboBox(cb_client, "nom", "client")
             prins_object.chargementComboBox(cb_programmation, "id_programmation", "programmation")
+            prins_object.chargementComboBoxTestExist(cb_billet, "id_billet", "select distinct id_billet from billet where check_paie=0")
 
 
             prins_object.GetTable("client", DataGridView1)
             prins_object.GetTablegrid("theatre", GridControl1)
             prins_object.GetTablegrid("salle", GridControl2)
-            prins_object.GetTablegrid("programme", GridControl3)
-            prins_object.GetTablegrid("programmation", GridControl4)
-            prins_object.GetTablegrid("billet", GridControl5)
+            prins_object.GetTablegrid("programme_table_view", GridControl3)
+            prins_object.GetTablegrid("programmation_table_view", GridControl4)
+            prins_object.GetTablegrid("billet_table_view", GridControl5)
             prins_object.GetTablegrid("paiement", GridControl6)
 
         Catch ex As Exception
@@ -361,19 +371,18 @@ MessageBoxIcon.Question)
     Private Sub SimpleButton9_Click(sender As Object, e As EventArgs) Handles SimpleButton9.Click
         Try
             If (date_ceremony.Text <> "" And cb_salle.Text <> "" And cb_theatre.Text <> "" And txt_heure_debut.Text <> "" And txt_heure_fin.Text <> "") Then
-                Dim pro As programme_class
-                pro = New programme_class
-                pro.Id1 = id_pro
-                pro.Date_ceremony1 = DateTime.Parse(date_ceremony.Text)
-                pro.Heure_debut1 = Decimal.Parse(txt_heure_debut.Text)
-                pro.Heure_fin1 = Decimal.Parse(txt_heure_fin.Text)
-                Dim ex As Integer
-                ex = Integer.Parse(prins_object.GetID("id_salle", "salle", "nom_salle", cb_salle.Text))
-                pro.Ref_salle1 = ex
-                pro.Ref_theatre1 = Integer.Parse(prins_object.GetID("id_theatre", "theatre", "nom_theatre", cb_theatre.Text))
+                Dim pr As programme_classe
+                pr = New programme_classe
+                pr.Id_programme1 = id_pro
+                pr.Date_cer1 = DateTime.Parse(date_ceremony.Text)
+                pr.Heure_begin1 = Decimal.Parse(txt_heure_debut.Text)
+                pr.Heure_end1 = Decimal.Parse(txt_heure_fin.Text)
 
-                prins_object.operation_programme(pro)
-                prins_object.GetTablegrid("programme", GridControl3)
+                pr.Ref_sall1 = Integer.Parse(prins_object.GetID("id_salle", "salle", "nom_salle", cb_salle.Text))
+                pr.Ref_theat1 = Integer.Parse(prins_object.GetID("id_theatre", "theatre", "nom_theatre", cb_theatre.Text))
+
+                prins_object.operation_programme(pr)
+                prins_object.GetTablegrid("programme_table_view", GridControl3)
                 init_programme()
             Else
                 MessageBox.Show("les chams doivent etre tous remplis")
@@ -388,6 +397,7 @@ MessageBoxIcon.Question)
         txt_heure_fin.Text = ""
         cb_salle.Text = ""
         cb_theatre.Text = ""
+        txt_id_programme.Text = ""
     End Sub
 
     Private Sub SimpleButton4_Click(sender As Object, e As EventArgs) Handles SimpleButton4.Click
@@ -397,17 +407,17 @@ MessageBoxIcon.Question)
     Private Sub SimpleButton8_Click(sender As Object, e As EventArgs) Handles SimpleButton8.Click
         Try
             If (txt_id_programme.Text <> "" And date_ceremony.Text <> "" And cb_salle.Text <> "" And cb_theatre.Text <> "" And txt_heure_debut.Text <> "" And txt_heure_fin.Text <> "") Then
-                Dim pro As programme_class
-                pro = New programme_class
-                pro.Id1 = Integer.Parse(txt_id_programme.Text)
-                pro.Date_ceremony1 = DateTime.Parse(date_ceremony.Text)
-                pro.Heure_debut1 = Integer.Parse(txt_heure_debut.Text)
-                pro.Heure_fin1 = Integer.Parse(txt_heure_fin.Text)
-                pro.Ref_salle1 = Integer.Parse(prins_object.GetID("id_salle", "salle", "nom_salle", cb_salle.Text))
-                pro.Ref_theatre1 = Integer.Parse(prins_object.GetID("id_theatre", "theatre", "nom_theatre", cb_theatre.Text))
+                Dim pro As programme_classe
+                pro = New programme_classe
+                pro.Id_programme1 = Integer.Parse(txt_id_programme.Text)
+                pro.Date_cer1 = DateTime.Parse(date_ceremony.Text)
+                pro.Heure_begin1 = Decimal.Parse(txt_heure_debut.Text)
+                pro.Heure_end1 = Decimal.Parse(txt_heure_fin.Text)
+                pro.Ref_sall1 = Integer.Parse(prins_object.GetID("id_salle", "salle", "nom_salle", cb_salle.Text))
+                pro.Ref_theat1 = Integer.Parse(prins_object.GetID("id_theatre", "theatre", "nom_theatre", cb_theatre.Text))
 
                 prins_object.operation_programme(pro)
-                prins_object.GetTablegrid("programme", GridControl3)
+                prins_object.GetTablegrid("programme_table_view", GridControl3)
                 init_programme()
             Else
                 MessageBox.Show("les chams doivent etre tous remplis")
@@ -419,12 +429,12 @@ MessageBoxIcon.Question)
 
     Private Sub GridView3_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridView3.RowClick
         Try
-            txt_id_programme.Text = GridView1.GetRowCellValue(e.RowHandle, "id_programme").ToString
-            date_ceremony.Text = GridView1.GetRowCellValue(e.RowHandle, "date_ceremony").ToString
-            txt_heure_debut.Text = GridView1.GetRowCellValue(e.RowHandle, "heure_debut").ToString
-            txt_heure_fin.Text = GridView1.GetRowCellValue(e.RowHandle, "heure_fin").ToString
-            cb_theatre.Text = GridView1.GetRowCellValue(e.RowHandle, "ref_theatre").ToString
-            cb_salle.Text = GridView1.GetRowCellValue(e.RowHandle, "ref_salle").ToString
+            txt_id_programme.Text = GridView3.GetRowCellValue(e.RowHandle, "id_programme").ToString
+            date_ceremony.Text = GridView3.GetRowCellValue(e.RowHandle, "date_ceremony").ToString
+            txt_heure_debut.Text = GridView3.GetRowCellValue(e.RowHandle, "heure_debut").ToString
+            txt_heure_fin.Text = GridView3.GetRowCellValue(e.RowHandle, "heure_fin").ToString
+            cb_theatre.Text = GridView3.GetRowCellValue(e.RowHandle, "nom_theatre").ToString
+            cb_salle.Text = GridView3.GetRowCellValue(e.RowHandle, "nom_salle").ToString
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
@@ -436,7 +446,7 @@ MessageBoxIcon.Question)
 MessageBoxIcon.Question)
             If réponse = DialogResult.Yes Then
                 prins_object.Supprimer("programme", "id_programme", Integer.Parse(txt_id_programme.Text))
-                prins_object.GetTablegrid("programme", GridControl3)
+                prins_object.GetTablegrid("programme_table_view", GridControl3)
                 init_programme()
             End If
         Catch ex As Exception
@@ -444,14 +454,8 @@ MessageBoxIcon.Question)
         End Try
     End Sub
 
-    Private Sub SimpleButton17_Click(sender As Object, e As EventArgs) Handles SimpleButton17.Click
-        Try
-            Dim ex As Integer
-            ex = Integer.Parse(prins_object.GetID("id_salle", "salle", "nom_salle", cb_salle.Text))
-            txt_id_programme.Text = Str(ex)
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
+    Private Sub SimpleButton17_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Private Sub BarButtonItem3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem3.ItemClick
@@ -477,7 +481,7 @@ MessageBoxIcon.Question)
                 pro.Ref_type_billet1 = Integer.Parse(prins_object.GetID("id_type_billet", "type_billet", "designation", cb_type_billet.Text))
 
                 prins_object.operation_programmation(pro)
-                prins_object.GetTablegrid("programmation", GridControl4)
+                prins_object.GetTablegrid("programmation_table_view", GridControl4)
                 init_programmation()
             Else
                 MessageBox.Show("les chams doivent etre tous remplis")
@@ -545,7 +549,7 @@ MessageBoxIcon.Question)
                     Else
                         pro.Numero_chaise1 = num
                         prins_object.operation_billet(pro)
-                        prins_object.GetTablegrid("billet", GridControl5)
+                        prins_object.GetTablegrid("billet_table_view", GridControl5)
                     End If
 
                     init_billet()
@@ -645,23 +649,127 @@ MessageBoxIcon.Question)
 
     Private Sub GridView5_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridView5.RowClick
         Try
-            txt_id_billet.Text = GridView1.GetRowCellValue(e.RowHandle, "id_billet").ToString
-            txt_prix_a_payer.Text = GridView1.GetRowCellValue(e.RowHandle, "prix_a_payer").ToString
-            cb_client.Text = GridView1.GetRowCellValue(e.RowHandle, "ref_client").ToString
-            txt_reduction.Text = GridView1.GetRowCellValue(e.RowHandle, "reduction").ToString
-            cb_programmation.Text = GridView1.GetRowCellValue(e.RowHandle, "ref_programmation").ToString
+            txt_id_billet.Text = GridView5.GetRowCellValue(e.RowHandle, "id_billet").ToString
+            txt_prix_a_payer.Text = GridView5.GetRowCellValue(e.RowHandle, "prix_a_payer").ToString
+            cb_client.Text = GridView5.GetRowCellValue(e.RowHandle, "ref_client").ToString
+            txt_reduction.Text = GridView5.GetRowCellValue(e.RowHandle, "reduction").ToString
+            cb_programmation.Text = GridView5.GetRowCellValue(e.RowHandle, "ref_programmation").ToString
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
     End Sub
 
     Private Sub SimpleButton20_Click(sender As Object, e As EventArgs) Handles SimpleButton20.Click
+        If (txt_id_paiement.Text <> "") Then
 
+            Try
+
+                Dim rpt As rpt_recu = New rpt_recu()
+                rpt.DataSource = prins_object.get_Report_X("paiement_view", "id_paiement", Integer.Parse(txt_id_paiement.Text))
+                ' rpt.DataSource = prins_object.get_Report_Trier1("effectuer_view", "date_effectuer", Date.Parse(DateTimePicker3.Text), Date.Parse(DateTimePicker4.Text))
+                'Using (ReportPrintTool printTool = New ReportPrintTool(rpt))
+                Dim printTool As ReportPrintTool = New ReportPrintTool(rpt)
+                printTool.ShowPreviewDialog()
+
+
+                'End Using
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+        Else
+            MessageBox.Show("desole ID ne doit pas etre vide", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+
+        End If
     End Sub
 
     Private Sub BarButtonItem1_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarButtonItem1.ItemClick
         Dim use As New frm_user
         use.Show()
+
+    End Sub
+
+    Private Sub cb_theatre_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cb_theatre.SelectedIndexChanged
+        'Try
+        '    Dim en As Integer
+        '    en = Integer.Parse(prins_object.GetID("id_theatre", "theatre", "nom_theatre", cb_theatre.Text))
+        '    txt_id_programme.Text = CStr(en)
+        'Catch ex As Exception
+        '    MessageBox.Show(ex.Message)
+        'End Try
+    End Sub
+
+    Private Sub SimpleButton18_Click(sender As Object, e As EventArgs) Handles SimpleButton18.Click
+        If (date_affiche.Text <> "") Then
+
+            Try
+
+                Dim rpt As rpt_affiche = New rpt_affiche()
+                rpt.DataSource = prins_object.get_Report_X_with_date("afiche_view", "date_ceremony", Date.Parse(date_affiche.Text))
+                ' rpt.DataSource = prins_object.get_Report_Trier1("effectuer_view", "date_effectuer", Date.Parse(DateTimePicker3.Text), Date.Parse(DateTimePicker4.Text))
+                'Using (ReportPrintTool printTool = New ReportPrintTool(rpt))
+                Dim printTool As ReportPrintTool = New ReportPrintTool(rpt)
+                printTool.ShowPreviewDialog()
+
+
+                'End Using
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+        Else
+            MessageBox.Show("desole veuillez selectionner la date", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+
+        End If
+
+    End Sub
+
+    Private Sub SimpleButton19_Click(sender As Object, e As EventArgs) Handles SimpleButton19.Click
+        If (txt_id_billet.Text <> "") Then
+
+            Try
+
+                Dim rpt As rpt_billet = New rpt_billet()
+                rpt.DataSource = prins_object.get_Report_X("billet_view", "id_billet", Integer.Parse(txt_id_billet.Text))
+                ' rpt.DataSource = prins_object.get_Report_Trier1("effectuer_view", "date_effectuer", Date.Parse(DateTimePicker3.Text), Date.Parse(DateTimePicker4.Text))
+                'Using (ReportPrintTool printTool = New ReportPrintTool(rpt))
+                Dim printTool As ReportPrintTool = New ReportPrintTool(rpt)
+                printTool.ShowPreviewDialog()
+
+
+                'End Using
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+        Else
+            MessageBox.Show("desole ID ne doit pas etre vide", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+
+        End If
+    End Sub
+
+    Private Sub GridView6_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridView6.RowClick
+        Try
+            txt_id_paiement.Text = GridView6.GetRowCellValue(e.RowHandle, "id_paiement").ToString
+            txt_designation.Text = GridView6.GetRowCellValue(e.RowHandle, "designation").ToString
+            date_paie.Text = GridView6.GetRowCellValue(e.RowHandle, "date_paiement").ToString
+            cb_billet.Text = GridView6.GetRowCellValue(e.RowHandle, "ref_billet").ToString
+            txt_montant_paye.Text = GridView6.GetRowCellValue(e.RowHandle, "montant").ToString
+            ' txt_montant_a_payer.Text = GridView5.GetRowCellValue(e.RowHandle, "ref_programmation").ToString
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub SimpleButton11_Click(sender As Object, e As EventArgs) Handles SimpleButton11.Click
+
+    End Sub
+
+    Private Sub SimpleButton10_Click(sender As Object, e As EventArgs) Handles SimpleButton10.Click
+
+    End Sub
+
+    Private Sub SimpleButton14_Click(sender As Object, e As EventArgs) Handles SimpleButton14.Click
 
     End Sub
 End Class

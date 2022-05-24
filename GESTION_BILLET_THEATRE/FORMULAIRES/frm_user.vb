@@ -34,6 +34,7 @@
     End Sub
 
     Private Sub frm_user_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        prins_object = New principal_class
         prins_object.GetTablegrid("users", GridControl1)
     End Sub
 End Class
