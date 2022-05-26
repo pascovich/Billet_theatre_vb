@@ -153,7 +153,7 @@ Partial Public Class Form1
             Dim réponse As DialogResult = MessageBox.Show("Voulez-vous vraiment ce client", "Suppression", MessageBoxButtons.YesNo,
 MessageBoxIcon.Question)
             If réponse = DialogResult.Yes Then
-                prins_object.Supprimer("client", "id", Integer.Parse(txt_id.Text))
+                prins_object.Supprimer("client", "id_client", Integer.Parse(txt_id.Text))
                 prins_object.GetTable("client", DataGridView1)
                 'prins_object.GetTablegrid("tmembre", GridControl1)
                 init_client()
@@ -165,7 +165,7 @@ MessageBoxIcon.Question)
 
     Private Sub DataGridView1_DoubleClick(sender As Object, e As EventArgs) Handles DataGridView1.DoubleClick
         Try
-            txt_id.Text = DataGridView1.CurrentRow.Cells("id").Value.ToString
+            txt_id.Text = DataGridView1.CurrentRow.Cells("id_client").Value.ToString
             txt_nom.Text = DataGridView1.CurrentRow.Cells("nom").Value.ToString
             txt_postnom.Text = DataGridView1.CurrentRow.Cells("postnom").Value.ToString
             txt_prenom.Text = DataGridView1.CurrentRow.Cells("prenom").Value.ToString
@@ -639,8 +639,8 @@ MessageBoxIcon.Question)
     Private Sub GridView4_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridView4.RowClick
         Try
             txt_id_programmation.Text = GridView1.GetRowCellValue(e.RowHandle, "id_programmation").ToString
-            cb_programme.Text = GridView1.GetRowCellValue(e.RowHandle, "ref_programme").ToString
-            cb_type_billet.Text = GridView1.GetRowCellValue(e.RowHandle, "ref_type_billet").ToString
+            cb_programme.Text = GridView1.GetRowCellValue(e.RowHandle, "id_programme").ToString
+            cb_type_billet.Text = GridView1.GetRowCellValue(e.RowHandle, "designation").ToString
             txt_prix_programmation.Text = GridView1.GetRowCellValue(e.RowHandle, "prix").ToString
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -651,9 +651,9 @@ MessageBoxIcon.Question)
         Try
             txt_id_billet.Text = GridView5.GetRowCellValue(e.RowHandle, "id_billet").ToString
             txt_prix_a_payer.Text = GridView5.GetRowCellValue(e.RowHandle, "prix_a_payer").ToString
-            cb_client.Text = GridView5.GetRowCellValue(e.RowHandle, "ref_client").ToString
+            cb_client.Text = GridView5.GetRowCellValue(e.RowHandle, "nom").ToString
             txt_reduction.Text = GridView5.GetRowCellValue(e.RowHandle, "reduction").ToString
-            cb_programmation.Text = GridView5.GetRowCellValue(e.RowHandle, "ref_programmation").ToString
+            cb_programmation.Text = GridView5.GetRowCellValue(e.RowHandle, "id_programmation").ToString
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try

@@ -17,25 +17,25 @@ Public Class principal_class
 
     Public Sub innitialise_connexion()
 
-        'Try
-        '    con = New SqlConnection("Data Source=PASCOVICH\ROOT;Initial Catalog=GESTION_BILLET;User ID=sa;Password=root")
-        '    'con = New SqlConnection("Data Source='" + File.ReadAllText(chem.Server) + "';Initial Catalog='" + File.ReadAllText(chem.Database) + "';User ID='" + File.ReadAllText(chem.Username) + "';Password='" + File.ReadAllText(chem.Password) + "'")
-
-        '    MessageBox.Show("La connexion a la BD a reussi")
-
-        'Catch ex As Exception
-
-        '    MessageBox.Show(ex.Message)
-
-        'End Try
         Try
-            cnx = New connexion_class()
-            cnx.connect()
-            con = New SqlConnection(cnx.chemin)
+            'con = New SqlConnection("Data Source=PASCOVICH\ROOT;Initial Catalog=GESTION_BILLET;User ID=sa;Password=root")
+            con = New SqlConnection("Data Source='" + File.ReadAllText(chem.Server) + "';Initial Catalog='" + File.ReadAllText(chem.Database) + "';User ID='" + File.ReadAllText(chem.Username) + "';Password='" + File.ReadAllText(chem.Password) + "'")
+
             ' MessageBox.Show("La connexion a la BD a reussi")
+
         Catch ex As Exception
-            MessageBox.Show("l'un de vos fichiers de configuration est incorrect" + ex.Message)
+
+            MessageBox.Show(ex.Message)
+
         End Try
+        'Try
+        '    cnx = New connexion_class()
+        '    cnx.connect()
+        '    con = New SqlConnection(cnx.chemin)
+        '    ' MessageBox.Show("La connexion a la BD a reussi")
+        'Catch ex As Exception
+        '    MessageBox.Show("l'un de vos fichiers de configuration est incorrect" + ex.Message)
+        'End Try
     End Sub
 
     Public Sub operation_user(use As user_class)

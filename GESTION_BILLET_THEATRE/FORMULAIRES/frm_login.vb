@@ -25,7 +25,7 @@ Public Class frm_login
 
                 con.Open()
                 cmd = con.CreateCommand
-                cmd.CommandText = "SELECT * FROM tuser WHERE username= '" + txt_username.Text + "'"
+                cmd.CommandText = "SELECT * FROM users WHERE username= '" + txt_username.Text + "'"
                 cmd.ExecuteNonQuery()
 
                 Dim Dr As SqlDataReader

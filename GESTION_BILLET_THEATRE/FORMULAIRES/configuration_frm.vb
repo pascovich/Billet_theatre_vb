@@ -5,7 +5,7 @@ Public Class configuration_frm
 
     Public chem As New chemin_acces_classe
 
-    Public InitialDirectory As String = "C:\BASE_DE_DONNE_VB"
+    Public InitialDirectory As String = "C:\BASE_DE_DONNE_VBTP"
 
     Public Server As New FileInfo(chem.Server)
     Public Database As New FileInfo(chem.Database)
