@@ -231,7 +231,7 @@ Public Class principal_class
         End Try
     End Sub
 
-    Public Sub afficherprix(cmb As System.Windows.Forms.ComboBox, prix As Label, reference As Integer)
+    Public Sub afficherprix(cmb As System.Windows.Forms.ComboBox, prix As Label, cat As Label, reference As Integer)
         Try
             innitialise_connexion()
 
@@ -241,7 +241,7 @@ Public Class principal_class
                 con.Open()
                 cmd = con.CreateCommand()
 
-                cmd.CommandText = "SELECT prix from programmation where id_programmation =@id_programmation"
+                cmd.CommandText = "SELECT prix,designation from programmation_table_view where id_programmation =@id_programmation"
                 cmd.Parameters.AddWithValue("@id_programmation", reference)
 
                 Dim rdd As IDataReader
@@ -249,6 +249,7 @@ Public Class principal_class
                 rdd = cmd.ExecuteReader()
                 While (rdd.Read)
                     prix.Text = rdd(0).ToString()
+                    cat.Text = rdd(1).ToString()
                 End While
                 rdd.Close()
                 rdd.Dispose()

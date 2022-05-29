@@ -181,6 +181,8 @@
         Me.SimpleButton14 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton15 = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupBox19 = New System.Windows.Forms.GroupBox()
+        Me.BunifuSeparator8 = New Bunifu.Framework.UI.BunifuSeparator()
+        Me.lbt_categ_billet = New System.Windows.Forms.Label()
         Me.txt_reduction = New DevExpress.XtraEditors.TextEdit()
         Me.cb_programmation = New System.Windows.Forms.ComboBox()
         Me.cb_client = New System.Windows.Forms.ComboBox()
@@ -436,6 +438,7 @@
         Me.txt_id.Name = "txt_id"
         Me.txt_id.Size = New System.Drawing.Size(25, 23)
         Me.txt_id.TabIndex = 24
+        Me.txt_id.Visible = False
         '
         'txt_adresse
         '
@@ -524,10 +527,12 @@
         '
         'txt_file
         '
+        Me.txt_file.Enabled = False
         Me.txt_file.Location = New System.Drawing.Point(854, 261)
         Me.txt_file.Name = "txt_file"
         Me.txt_file.Size = New System.Drawing.Size(200, 23)
         Me.txt_file.TabIndex = 19
+        Me.txt_file.Visible = False
         '
         'btn_pacourir
         '
@@ -706,6 +711,7 @@
         Me.txt_id_salle.Name = "txt_id_salle"
         Me.txt_id_salle.Size = New System.Drawing.Size(15, 23)
         Me.txt_id_salle.TabIndex = 20
+        Me.txt_id_salle.Visible = False
         '
         'GridControl2
         '
@@ -826,6 +832,7 @@
         Me.txt_id_theatre.Name = "txt_id_theatre"
         Me.txt_id_theatre.Size = New System.Drawing.Size(15, 23)
         Me.txt_id_theatre.TabIndex = 19
+        Me.txt_id_theatre.Visible = False
         '
         'GridControl1
         '
@@ -957,6 +964,7 @@
         Me.GroupBox7.Controls.Add(Me.GroupBox9)
         Me.GroupBox7.Controls.Add(Me.GridControl3)
         Me.GroupBox7.Controls.Add(Me.GroupBox8)
+        Me.GroupBox7.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox7.Location = New System.Drawing.Point(23, 18)
         Me.GroupBox7.Name = "GroupBox7"
         Me.GroupBox7.Size = New System.Drawing.Size(1058, 479)
@@ -968,8 +976,9 @@
         '
         Me.txt_id_programme.Location = New System.Drawing.Point(522, 229)
         Me.txt_id_programme.Name = "txt_id_programme"
-        Me.txt_id_programme.Size = New System.Drawing.Size(15, 21)
+        Me.txt_id_programme.Size = New System.Drawing.Size(15, 23)
         Me.txt_id_programme.TabIndex = 20
+        Me.txt_id_programme.Visible = False
         '
         'GroupBox9
         '
@@ -1092,7 +1101,7 @@
         Me.cb_salle.FormattingEnabled = True
         Me.cb_salle.Location = New System.Drawing.Point(161, 96)
         Me.cb_salle.Name = "cb_salle"
-        Me.cb_salle.Size = New System.Drawing.Size(298, 21)
+        Me.cb_salle.Size = New System.Drawing.Size(298, 24)
         Me.cb_salle.TabIndex = 31
         '
         'cb_theatre
@@ -1100,14 +1109,14 @@
         Me.cb_theatre.FormattingEnabled = True
         Me.cb_theatre.Location = New System.Drawing.Point(161, 64)
         Me.cb_theatre.Name = "cb_theatre"
-        Me.cb_theatre.Size = New System.Drawing.Size(298, 21)
+        Me.cb_theatre.Size = New System.Drawing.Size(298, 24)
         Me.cb_theatre.TabIndex = 30
         '
         'date_ceremony
         '
         Me.date_ceremony.Location = New System.Drawing.Point(161, 25)
         Me.date_ceremony.Name = "date_ceremony"
-        Me.date_ceremony.Size = New System.Drawing.Size(298, 21)
+        Me.date_ceremony.Size = New System.Drawing.Size(298, 23)
         Me.date_ceremony.TabIndex = 29
         '
         'Label16
@@ -1115,7 +1124,7 @@
         Me.Label16.AutoSize = True
         Me.Label16.Location = New System.Drawing.Point(17, 104)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(36, 13)
+        Me.Label16.Size = New System.Drawing.Size(52, 16)
         Me.Label16.TabIndex = 24
         Me.Label16.Text = "SALLE"
         '
@@ -1124,7 +1133,7 @@
         Me.Label15.AutoSize = True
         Me.Label15.Location = New System.Drawing.Point(18, 166)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(60, 13)
+        Me.Label15.Size = New System.Drawing.Size(85, 16)
         Me.Label15.TabIndex = 22
         Me.Label15.Text = "HEURE FIN"
         '
@@ -1133,7 +1142,7 @@
         Me.Label12.AutoSize = True
         Me.Label12.Location = New System.Drawing.Point(18, 136)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(75, 13)
+        Me.Label12.Size = New System.Drawing.Size(107, 16)
         Me.Label12.TabIndex = 20
         Me.Label12.Text = "HEURE DEBUT"
         '
@@ -1142,7 +1151,7 @@
         Me.Label11.AutoSize = True
         Me.Label11.Location = New System.Drawing.Point(18, 70)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(52, 13)
+        Me.Label11.Size = New System.Drawing.Size(72, 16)
         Me.Label11.TabIndex = 18
         Me.Label11.Text = "THEATRE"
         '
@@ -1151,7 +1160,7 @@
         Me.Label10.AutoSize = True
         Me.Label10.Location = New System.Drawing.Point(18, 31)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(95, 13)
+        Me.Label10.Size = New System.Drawing.Size(134, 16)
         Me.Label10.TabIndex = 16
         Me.Label10.Text = "DATE CEREMONIE"
         '
@@ -1171,6 +1180,7 @@
         Me.GroupBox12.Controls.Add(Me.GroupBox13)
         Me.GroupBox12.Controls.Add(Me.GridControl4)
         Me.GroupBox12.Controls.Add(Me.GroupBox16)
+        Me.GroupBox12.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox12.Location = New System.Drawing.Point(20, 24)
         Me.GroupBox12.Name = "GroupBox12"
         Me.GroupBox12.Size = New System.Drawing.Size(1058, 479)
@@ -1227,7 +1237,7 @@
         '
         Me.date_affiche.Location = New System.Drawing.Point(25, 66)
         Me.date_affiche.Name = "date_affiche"
-        Me.date_affiche.Size = New System.Drawing.Size(200, 21)
+        Me.date_affiche.Size = New System.Drawing.Size(200, 23)
         Me.date_affiche.TabIndex = 8
         '
         'SimpleButton18
@@ -1266,8 +1276,9 @@
         '
         Me.txt_id_programmation.Location = New System.Drawing.Point(522, 229)
         Me.txt_id_programmation.Name = "txt_id_programmation"
-        Me.txt_id_programmation.Size = New System.Drawing.Size(15, 21)
+        Me.txt_id_programmation.Size = New System.Drawing.Size(15, 23)
         Me.txt_id_programmation.TabIndex = 21
+        Me.txt_id_programmation.Visible = False
         '
         'GroupBox13
         '
@@ -1366,7 +1377,7 @@
         '
         Me.txt_prix_programmation.Location = New System.Drawing.Point(161, 133)
         Me.txt_prix_programmation.Name = "txt_prix_programmation"
-        Me.txt_prix_programmation.Properties.Mask.EditMask = "d"
+        Me.txt_prix_programmation.Properties.Mask.EditMask = "n2"
         Me.txt_prix_programmation.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.txt_prix_programmation.Size = New System.Drawing.Size(298, 20)
         Me.txt_prix_programmation.TabIndex = 29
@@ -1376,7 +1387,7 @@
         Me.cb_type_billet.FormattingEnabled = True
         Me.cb_type_billet.Location = New System.Drawing.Point(161, 96)
         Me.cb_type_billet.Name = "cb_type_billet"
-        Me.cb_type_billet.Size = New System.Drawing.Size(298, 21)
+        Me.cb_type_billet.Size = New System.Drawing.Size(298, 24)
         Me.cb_type_billet.TabIndex = 26
         '
         'cb_programme
@@ -1384,7 +1395,7 @@
         Me.cb_programme.FormattingEnabled = True
         Me.cb_programme.Location = New System.Drawing.Point(161, 67)
         Me.cb_programme.Name = "cb_programme"
-        Me.cb_programme.Size = New System.Drawing.Size(298, 21)
+        Me.cb_programme.Size = New System.Drawing.Size(298, 24)
         Me.cb_programme.TabIndex = 25
         '
         'Label17
@@ -1392,7 +1403,7 @@
         Me.Label17.AutoSize = True
         Me.Label17.Location = New System.Drawing.Point(17, 104)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(66, 13)
+        Me.Label17.Size = New System.Drawing.Size(97, 16)
         Me.Label17.TabIndex = 24
         Me.Label17.Text = "TYPE BILLET"
         '
@@ -1401,7 +1412,7 @@
         Me.Label19.AutoSize = True
         Me.Label19.Location = New System.Drawing.Point(18, 136)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(30, 13)
+        Me.Label19.Size = New System.Drawing.Size(42, 16)
         Me.Label19.TabIndex = 20
         Me.Label19.Text = "PRIX"
         '
@@ -1410,7 +1421,7 @@
         Me.Label20.AutoSize = True
         Me.Label20.Location = New System.Drawing.Point(18, 70)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(71, 13)
+        Me.Label20.Size = New System.Drawing.Size(99, 16)
         Me.Label20.TabIndex = 18
         Me.Label20.Text = "PROGRAMME"
         '
@@ -1621,6 +1632,7 @@
         Me.txt_id_paiement.Name = "txt_id_paiement"
         Me.txt_id_paiement.Size = New System.Drawing.Size(15, 21)
         Me.txt_id_paiement.TabIndex = 23
+        Me.txt_id_paiement.Visible = False
         '
         'GroupBox23
         '
@@ -1758,6 +1770,7 @@
         Me.txt_id_billet.Name = "txt_id_billet"
         Me.txt_id_billet.Size = New System.Drawing.Size(15, 21)
         Me.txt_id_billet.TabIndex = 22
+        Me.txt_id_billet.Visible = False
         '
         'GroupBox21
         '
@@ -1821,10 +1834,12 @@
         '
         'PictureEdit2
         '
+        Me.PictureEdit2.EditValue = CType(resources.GetObject("PictureEdit2.EditValue"), Object)
         Me.PictureEdit2.Location = New System.Drawing.Point(20, 20)
         Me.PictureEdit2.MenuManager = Me.ribbonControl1
         Me.PictureEdit2.Name = "PictureEdit2"
         Me.PictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
+        Me.PictureEdit2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         Me.PictureEdit2.Size = New System.Drawing.Size(257, 178)
         Me.PictureEdit2.TabIndex = 0
         '
@@ -1900,6 +1915,8 @@
         '
         'GroupBox19
         '
+        Me.GroupBox19.Controls.Add(Me.BunifuSeparator8)
+        Me.GroupBox19.Controls.Add(Me.lbt_categ_billet)
         Me.GroupBox19.Controls.Add(Me.txt_reduction)
         Me.GroupBox19.Controls.Add(Me.cb_programmation)
         Me.GroupBox19.Controls.Add(Me.cb_client)
@@ -1909,11 +1926,36 @@
         Me.GroupBox19.Controls.Add(Me.Label23)
         Me.GroupBox19.Controls.Add(Me.Label22)
         Me.GroupBox19.Controls.Add(Me.Label21)
+        Me.GroupBox19.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox19.Location = New System.Drawing.Point(22, 20)
         Me.GroupBox19.Name = "GroupBox19"
         Me.GroupBox19.Size = New System.Drawing.Size(522, 201)
         Me.GroupBox19.TabIndex = 0
         Me.GroupBox19.TabStop = False
+        '
+        'BunifuSeparator8
+        '
+        Me.BunifuSeparator8.BackColor = System.Drawing.Color.Transparent
+        Me.BunifuSeparator8.LineColor = System.Drawing.Color.FromArgb(CType(CType(105, Byte), Integer), CType(CType(105, Byte), Integer), CType(CType(105, Byte), Integer))
+        Me.BunifuSeparator8.LineThickness = 1
+        Me.BunifuSeparator8.Location = New System.Drawing.Point(397, 142)
+        Me.BunifuSeparator8.Margin = New System.Windows.Forms.Padding(4)
+        Me.BunifuSeparator8.Name = "BunifuSeparator8"
+        Me.BunifuSeparator8.Size = New System.Drawing.Size(105, 11)
+        Me.BunifuSeparator8.TabIndex = 40
+        Me.BunifuSeparator8.Transparency = 255
+        Me.BunifuSeparator8.Vertical = False
+        '
+        'lbt_categ_billet
+        '
+        Me.lbt_categ_billet.AutoSize = True
+        Me.lbt_categ_billet.Font = New System.Drawing.Font("Sitka Small", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbt_categ_billet.ForeColor = System.Drawing.Color.Blue
+        Me.lbt_categ_billet.Location = New System.Drawing.Point(405, 119)
+        Me.lbt_categ_billet.Name = "lbt_categ_billet"
+        Me.lbt_categ_billet.Size = New System.Drawing.Size(101, 24)
+        Me.lbt_categ_billet.TabIndex = 39
+        Me.lbt_categ_billet.Text = "CATEGORY"
         '
         'txt_reduction
         '
@@ -1929,7 +1971,7 @@
         Me.cb_programmation.FormattingEnabled = True
         Me.cb_programmation.Location = New System.Drawing.Point(149, 28)
         Me.cb_programmation.Name = "cb_programmation"
-        Me.cb_programmation.Size = New System.Drawing.Size(299, 21)
+        Me.cb_programmation.Size = New System.Drawing.Size(299, 24)
         Me.cb_programmation.TabIndex = 36
         '
         'cb_client
@@ -1937,7 +1979,7 @@
         Me.cb_client.FormattingEnabled = True
         Me.cb_client.Location = New System.Drawing.Point(149, 65)
         Me.cb_client.Name = "cb_client"
-        Me.cb_client.Size = New System.Drawing.Size(299, 21)
+        Me.cb_client.Size = New System.Drawing.Size(299, 24)
         Me.cb_client.TabIndex = 35
         '
         'BunifuSeparator5
@@ -1977,7 +2019,7 @@
         Me.Label23.AutoSize = True
         Me.Label23.Location = New System.Drawing.Point(7, 179)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(66, 13)
+        Me.Label23.Size = New System.Drawing.Size(91, 16)
         Me.Label23.TabIndex = 31
         Me.Label23.Text = "REDUCTION"
         '
@@ -1986,7 +2028,7 @@
         Me.Label22.AutoSize = True
         Me.Label22.Location = New System.Drawing.Point(7, 65)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(42, 13)
+        Me.Label22.Size = New System.Drawing.Size(59, 16)
         Me.Label22.TabIndex = 28
         Me.Label22.Text = "CLIENT"
         '
@@ -1995,7 +2037,7 @@
         Me.Label21.AutoSize = True
         Me.Label21.Location = New System.Drawing.Point(7, 31)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(97, 13)
+        Me.Label21.Size = New System.Drawing.Size(135, 16)
         Me.Label21.TabIndex = 26
         Me.Label21.Text = "PROGRAMMATION"
         '
@@ -2260,4 +2302,6 @@
     Friend WithEvents BunifuSeparator7 As Bunifu.Framework.UI.BunifuSeparator
     Friend WithEvents BunifuCustomLabel5 As Bunifu.Framework.UI.BunifuCustomLabel
     Friend WithEvents date_affiche As DateTimePicker
+    Friend WithEvents BunifuSeparator8 As Bunifu.Framework.UI.BunifuSeparator
+    Friend WithEvents lbt_categ_billet As Label
 End Class

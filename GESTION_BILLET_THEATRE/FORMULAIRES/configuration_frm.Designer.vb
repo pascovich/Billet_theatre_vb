@@ -227,6 +227,7 @@ Partial Class configuration_frm
         Me.Controls.Add(Me.btn_configurer)
         Me.Controls.Add(Me.PictureEdit1)
         Me.Name = "configuration_frm"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "configuration_frm"
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

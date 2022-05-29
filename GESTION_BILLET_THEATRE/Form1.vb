@@ -116,12 +116,12 @@ Partial Public Class Form1
                 PictureEdit1.Image = Image.FromFile(fr.FileName)
             End If
         Catch ex As Exception
-            MessageBox.Show(ex.Message)
+            MessageBox.Show(ex.Message + " verifie aussi la photo")
         End Try
     End Sub
 
     Private Sub btn_update_Click(sender As Object, e As EventArgs) Handles btn_update.Click
-        If (txt_nom.Text <> "" And txt_postnom.Text <> "" And txt_prenom.Text <> "" And DateTimePicker1.Text <> "" And txt_telephone.Text <> "" And cb_sexe.Text <> "" And txt_file.Text <> "" And txt_adresse.Text <> "") Then
+        If (txt_nom.Text <> "" And txt_postnom.Text <> "" And txt_prenom.Text <> "" And DateTimePicker1.Text <> "" And txt_telephone.Text <> "" And cb_sexe.Text <> "" And txt_adresse.Text <> "") Then
             Try
                 clt = New client_class
                 clt.Id1 = Integer.Parse(txt_id.Text)
@@ -335,6 +335,8 @@ MessageBoxIcon.Question)
             cb_programmation.Items.Clear()
             cb_billet.Items.Clear()
 
+            txt_designation.Text = prins_object.GetNumFact()
+
             prins_object.chargementComboBox(cb_salle, "nom_salle", "salle")
             prins_object.chargementComboBox(cb_theatre, "nom_theatre", "theatre")
             prins_object.chargementComboBox(cb_programme, "id_programme", "programme")
@@ -369,27 +371,33 @@ MessageBoxIcon.Question)
     Dim id_pro As Integer
 
     Private Sub SimpleButton9_Click(sender As Object, e As EventArgs) Handles SimpleButton9.Click
-        Try
-            If (date_ceremony.Text <> "" And cb_salle.Text <> "" And cb_theatre.Text <> "" And txt_heure_debut.Text <> "" And txt_heure_fin.Text <> "") Then
-                Dim pr As programme_classe
-                pr = New programme_classe
-                pr.Id_programme1 = id_pro
-                pr.Date_cer1 = DateTime.Parse(date_ceremony.Text)
-                pr.Heure_begin1 = Decimal.Parse(txt_heure_debut.Text)
-                pr.Heure_end1 = Decimal.Parse(txt_heure_fin.Text)
+        If (Decimal.Parse(txt_heure_debut.Text) >= 0 And Decimal.Parse(txt_heure_debut.Text) <= 23 And Decimal.Parse(txt_heure_fin.Text) >= 0 And Decimal.Parse(txt_heure_fin.Text) <= 23 And Decimal.Parse(txt_heure_debut.Text) <= Decimal.Parse(txt_heure_fin.Text)) Then
+            Try
+                If (date_ceremony.Text <> "" And cb_salle.Text <> "" And cb_theatre.Text <> "" And txt_heure_debut.Text <> "" And txt_heure_fin.Text <> "") Then
+                    Dim pr As programme_classe
+                    pr = New programme_classe
+                    pr.Id_programme1 = id_pro
+                    pr.Date_cer1 = DateTime.Parse(date_ceremony.Text)
+                    pr.Heure_begin1 = Decimal.Parse(txt_heure_debut.Text)
+                    pr.Heure_end1 = Decimal.Parse(txt_heure_fin.Text)
 
-                pr.Ref_sall1 = Integer.Parse(prins_object.GetID("id_salle", "salle", "nom_salle", cb_salle.Text))
-                pr.Ref_theat1 = Integer.Parse(prins_object.GetID("id_theatre", "theatre", "nom_theatre", cb_theatre.Text))
+                    pr.Ref_sall1 = Integer.Parse(prins_object.GetID("id_salle", "salle", "nom_salle", cb_salle.Text))
+                    pr.Ref_theat1 = Integer.Parse(prins_object.GetID("id_theatre", "theatre", "nom_theatre", cb_theatre.Text))
 
-                prins_object.operation_programme(pr)
-                prins_object.GetTablegrid("programme_table_view", GridControl3)
-                init_programme()
-            Else
-                MessageBox.Show("les chams doivent etre tous remplis")
-            End If
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
+                    prins_object.operation_programme(pr)
+                    prins_object.GetTablegrid("programme_table_view", GridControl3)
+                    init_programme()
+                Else
+                    MessageBox.Show("les chams doivent etre tous remplis")
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+        Else
+            MessageBox.Show("Verifier la configuration des heures svp", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End If
+
     End Sub
     Sub init_programme()
         date_ceremony.Text = ""
@@ -405,26 +413,33 @@ MessageBoxIcon.Question)
     End Sub
 
     Private Sub SimpleButton8_Click(sender As Object, e As EventArgs) Handles SimpleButton8.Click
-        Try
-            If (txt_id_programme.Text <> "" And date_ceremony.Text <> "" And cb_salle.Text <> "" And cb_theatre.Text <> "" And txt_heure_debut.Text <> "" And txt_heure_fin.Text <> "") Then
-                Dim pro As programme_classe
-                pro = New programme_classe
-                pro.Id_programme1 = Integer.Parse(txt_id_programme.Text)
-                pro.Date_cer1 = DateTime.Parse(date_ceremony.Text)
-                pro.Heure_begin1 = Decimal.Parse(txt_heure_debut.Text)
-                pro.Heure_end1 = Decimal.Parse(txt_heure_fin.Text)
-                pro.Ref_sall1 = Integer.Parse(prins_object.GetID("id_salle", "salle", "nom_salle", cb_salle.Text))
-                pro.Ref_theat1 = Integer.Parse(prins_object.GetID("id_theatre", "theatre", "nom_theatre", cb_theatre.Text))
+        If (Decimal.Parse(txt_heure_debut.Text) >= 0 And Decimal.Parse(txt_heure_debut.Text) <= 23 And Decimal.Parse(txt_heure_fin.Text) >= 0 And Decimal.Parse(txt_heure_fin.Text) <= 23 And Decimal.Parse(txt_heure_debut.Text) <= Decimal.Parse(txt_heure_fin.Text)) Then
+            Try
+                If (txt_id_programme.Text <> "" And date_ceremony.Text <> "" And cb_salle.Text <> "" And cb_theatre.Text <> "" And txt_heure_debut.Text <> "" And txt_heure_fin.Text <> "") Then
+                    Dim pro As programme_classe
+                    pro = New programme_classe
+                    pro.Id_programme1 = Integer.Parse(txt_id_programme.Text)
+                    pro.Date_cer1 = DateTime.Parse(date_ceremony.Text)
+                    pro.Heure_begin1 = Decimal.Parse(txt_heure_debut.Text)
+                    pro.Heure_end1 = Decimal.Parse(txt_heure_fin.Text)
+                    pro.Ref_sall1 = Integer.Parse(prins_object.GetID("id_salle", "salle", "nom_salle", cb_salle.Text))
+                    pro.Ref_theat1 = Integer.Parse(prins_object.GetID("id_theatre", "theatre", "nom_theatre", cb_theatre.Text))
 
-                prins_object.operation_programme(pro)
-                prins_object.GetTablegrid("programme_table_view", GridControl3)
-                init_programme()
-            Else
-                MessageBox.Show("les chams doivent etre tous remplis")
-            End If
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
+                    prins_object.operation_programme(pro)
+                    prins_object.GetTablegrid("programme_table_view", GridControl3)
+                    init_programme()
+                Else
+                    MessageBox.Show("les chams doivent etre tous remplis")
+                End If
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+
+        Else
+            MessageBox.Show("Verifier la configuration des heures svp", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End If
+
     End Sub
 
     Private Sub GridView3_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridView3.RowClick
@@ -493,13 +508,14 @@ MessageBoxIcon.Question)
     End Sub
     Sub init_programmation()
         txt_id_programmation.Text = ""
+        txt_prix_programmation.Text = ""
         cb_type_billet.Text = ""
         cb_programme.Text = ""
     End Sub
 
     Private Sub cb_programmation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cb_programmation.SelectedIndexChanged
         Try
-            prins_object.afficherprix(cb_programmation, txt_prix_a_payer, Integer.Parse(cb_programmation.Text))
+            prins_object.afficherprix(cb_programmation, txt_prix_a_payer, lbt_categ_billet, Integer.Parse(cb_programmation.Text))
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -622,6 +638,7 @@ MessageBoxIcon.Question)
     Sub init_paiement()
         txt_id_paiement.Text = ""
         txt_designation.Text = ""
+        cb_billet.Text = ""
         txt_montant_paye.Text = ""
         txt_montant_a_payer.Text = ""
         date_ceremony.Text = ""
@@ -638,10 +655,10 @@ MessageBoxIcon.Question)
 
     Private Sub GridView4_RowClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GridView4.RowClick
         Try
-            txt_id_programmation.Text = GridView1.GetRowCellValue(e.RowHandle, "id_programmation").ToString
-            cb_programme.Text = GridView1.GetRowCellValue(e.RowHandle, "id_programme").ToString
-            cb_type_billet.Text = GridView1.GetRowCellValue(e.RowHandle, "designation").ToString
-            txt_prix_programmation.Text = GridView1.GetRowCellValue(e.RowHandle, "prix").ToString
+            txt_id_programmation.Text = GridView4.GetRowCellValue(e.RowHandle, "id_programmation").ToString
+            cb_programme.Text = GridView4.GetRowCellValue(e.RowHandle, "id_programme").ToString
+            cb_type_billet.Text = GridView4.GetRowCellValue(e.RowHandle, "designation").ToString
+            txt_prix_programmation.Text = GridView4.GetRowCellValue(e.RowHandle, "prix").ToString
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
